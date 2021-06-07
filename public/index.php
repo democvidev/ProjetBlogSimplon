@@ -5,6 +5,7 @@ $path = dirname(__DIR__);
 
 require $path . '/controller/postsController.php';
 require $path . '/controller/usersController.php';
+require $path . '/controller/errorsController.php';
 
 try {
     // redirection sur la home page
@@ -20,5 +21,5 @@ try {
         throw new Exception('404');
     }
 } catch (Exception $e) {
-    require $path . '/view/errors/error' . $e->getMessage() . '.php';
+    showErrors($e->getMessage());
 }
