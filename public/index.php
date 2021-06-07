@@ -3,6 +3,8 @@
 // remonte d'un cran dans le dossier parent
 $path = dirname(__DIR__);
 
+require $path . '/model/postsRepository.php';
+
 ob_start(); // buferiser le contenu de la page
 
 try {
@@ -10,8 +12,10 @@ try {
     $page = isset($_GET['page']) ? $_GET['page'] : 'post.home';
 
     if ($page === 'post.home') {
+        $posts = showAllPosts();        
         require $path . '/view/posts/home.php';
     } elseif ($page === 'post.show') {
+        $post = findOneById($_GET['id']);
         require $path . '/view/posts/show.php';
     } elseif ($page === 'user.connect') {
         require $path . '/view/users/connectionForm.php';

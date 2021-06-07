@@ -1,8 +1,8 @@
 <div class="card border-dark mb-3">
-  <div class="card-header">Header</div>
+  <div class="card-header">Ecrit par <?= $post['user'] ?>, le <?= $post['date'] ?></div>
   <div class="card-body">
-    <h4 class="card-title">Dark card title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h4 class="card-title"><?= $post['title'] ?></h4>
+    <p class="card-text"><?= $post['content'] ?></p>
   </div>
 </div>
 <p><a href="?page=post.home">Retour</a></p>
