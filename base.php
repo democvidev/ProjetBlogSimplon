@@ -11,7 +11,7 @@
 <body>
     <?php require '_nav.php'; ?>
     <div class="container">
-    Content
+    <?= $content; ?>
     </div>
 </body>
 </html>
