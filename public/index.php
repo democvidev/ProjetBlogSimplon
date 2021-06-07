@@ -24,10 +24,4 @@ try {
 
 $content = ob_get_clean();
 
-
-
-// ob_start();
-// require 'home.php';
-// $content = ob_get_clean();
-
 require $path . '/view/base.php';
