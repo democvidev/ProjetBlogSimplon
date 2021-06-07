@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php require '_nav.php'; ?>
+    <?php require 'shared/_nav.php'; ?>
     <div class="container">
     <?= $content; ?>
     </div>
