@@ -4,11 +4,11 @@
 function connect()
 { 
 
-    renderUsers('connectionForm');
+    render('connectionForm');
 
 }
 
-function renderUsers(string $view): void
+function render(string $view): void
 {
 
     ob_start(); // buferise le contenu de la page

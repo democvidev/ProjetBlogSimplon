@@ -2,16 +2,15 @@
 
 function showErrors($error)
 {
-    renderErrors($error);
+    render($error);
 
 }
 
-function renderErrors(string $view): void
+function render(string $view): void
 {
     ob_start(); // buferise le contenu de la page
 
     require dirname(__DIR__) . '/view/errors/error' . $view . '.php';
-
 
     $content = ob_get_clean();
 
