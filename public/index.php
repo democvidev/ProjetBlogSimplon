@@ -19,7 +19,7 @@ try {
         throw new Exception('404');
     }
 } catch (Exception $e) {
-    require 'view/errors/error' . $e->getMessage() . '.php';
+    require $path . '/view/errors/error' . $e->getMessage() . '.php';
 }
 
 $content = ob_get_clean();
