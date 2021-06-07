@@ -11,7 +11,7 @@ function home():void
     
     $posts = showAllPosts();
 
-    render('home', compact('posts'));
+    renderPosts('home', compact('posts'));
 }
 
 /**
@@ -25,7 +25,7 @@ function show():void
 
     $post = findOneById($_GET['id']);
 
-    render('show', compact('post'));
+    renderPosts('show', compact('post'));
 }
 
 /**
@@ -35,7 +35,7 @@ function show():void
  * @param array $datas
  * @return void
  */
-function render(string $view, array $datas): void
+function renderPosts(string $view, array $datas): void
 {
     extract($datas);
 

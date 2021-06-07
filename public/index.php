@@ -4,6 +4,7 @@
 $path = dirname(__DIR__);
 
 require $path . '/controller/postsController.php';
+require $path . '/controller/usersController.php';
 
 try {
     // redirection sur la home page
@@ -14,7 +15,7 @@ try {
     } elseif ($page === 'post.show') {
         show();
     } elseif ($page === 'user.connect') {
-        require $path . '/view/users/connectionForm.php';
+        connect();
     } else {
         throw new Exception('404');
     }
