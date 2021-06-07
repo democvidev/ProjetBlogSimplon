@@ -41,7 +41,7 @@ function showAllPosts(): array
     return $tab;
 }
 
-function findOneById($id)
+function findOneById(string $id): array
 {
     $dbh = getDBConnection();
     $query = 'SELECT posts.id AS id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id =:id;';

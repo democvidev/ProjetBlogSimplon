@@ -1,13 +1,21 @@
 <?php
 
-
-function connect()
+/**
+ * Gestion de la page de connexion
+ *
+ * @return void
+ */
+function connect(): void
 { 
-
     render('connectionForm');
-
 }
 
+/**
+ * Gestion du rendu de la connexion
+ *
+ * @param string $view
+ * @return void
+ */
 function render(string $view): void
 {
 

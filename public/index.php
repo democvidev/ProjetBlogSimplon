@@ -14,6 +14,9 @@ try {
     } elseif ($page === 'post.show') {
         require $path . '/controller/postsController.php';
         show();
+        if (isset($_GET['id'])) {
+            $post = findOneById($_GET['id']);
+        }
     } elseif ($page === 'user.connect') {
         require $path . '/controller/usersController.php';
         connect();
