@@ -22,7 +22,9 @@ function home():void
 function show():void
 {
     require dirname(__DIR__) . '/model/postsRepository.php';
-
+    if (empty($_GET['id'])) {
+        exit(header('Location: index.php'));
+    }
     $post = findOneById($_GET['id']);
 
     render('show', compact('post'));
