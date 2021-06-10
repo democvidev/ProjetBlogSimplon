@@ -22,14 +22,13 @@ function home():void
  */
 function show():void
 {
-    $title = "Page Articles";
     require dirname(__DIR__) . '/model/postsRepository.php';
     if (empty($_GET['id'])) {
         exit(header('Location: index.php'));
     }
     $post = findOneById($_GET['id']);
 
-    render('show', compact('post'), $title);
+    render('show', compact('post'), $post['title']);
 }
 
 function delete()
@@ -51,14 +50,14 @@ function delete()
  * @param array $datas
  * @return void
  */
-function render(string $view, array $datas, $title): void
+function render(string $view, array $datas, $pageTitle): void
 {
     extract($datas);
 
     ob_start(); // buferise le contenu de la page
     require dirname(__DIR__) . '/view/posts/'. $view .'.php';
     
-    $title = $title;
+    $title = $pageTitle;
     $content = ob_get_clean();
 
     require dirname(__DIR__) . '/view/base.php';

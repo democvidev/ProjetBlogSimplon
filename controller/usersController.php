@@ -7,7 +7,8 @@
  */
 function connect(): void
 { 
-    render('connectionForm');
+    $title = "Page Connexion";
+    render('connectionForm', $title);
 }
 
 /**
@@ -16,13 +17,13 @@ function connect(): void
  * @param string $view
  * @return void
  */
-function render(string $view): void
+function render(string $view, $pageTitle): void
 {
 
     ob_start(); // buferise le contenu de la page
 
     require dirname(__DIR__) . '/view/users/'. $view .'.php';
-
+    $title = $pageTitle;
     $content = ob_get_clean();
 
     require dirname(__DIR__) . '/view/base.php';
