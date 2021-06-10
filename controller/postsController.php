@@ -30,6 +30,18 @@ function show():void
     render('show', compact('post'));
 }
 
+function delete()
+{
+    require dirname(__DIR__) . '/model/postsRepository.php';
+    if (empty($_GET['id'])) {
+        exit(header('Location: index.php'));
+    }
+    deletePost($_GET['id']);
+
+    exit(header('Location: index.php'));
+}
+
+
 /**
  * Gestion de rendu du template
  *
@@ -49,3 +61,5 @@ function render(string $view, array $datas): void
 
     require dirname(__DIR__) . '/view/base.php';
 }
+
+

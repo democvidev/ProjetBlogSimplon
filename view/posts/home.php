@@ -6,7 +6,10 @@
             <div class="card-body">
                 <h4 class="card-title"><?= htmlspecialchars($post['title']); ?></h4>
                 <p class="card-text"><?= nl2br(htmlspecialchars($post['content'])) . '...'?></p>
-                <p><a href="?page=post.show&amp;id=<?= $post['id'] ?>">Voir plus ...</a></p>
+                <p class="d-flex justify-content-between">
+                    <a href="?page=post.show&amp;id=<?= $post['id'] ?>">Voir plus ...</a>
+                    <a href="?page=post.delete&amp;id=<?= $post['id'] ?>">Supprimer</a>
+                </p>                
             </div>
             </div>
         </div>

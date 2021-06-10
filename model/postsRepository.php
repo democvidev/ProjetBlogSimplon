@@ -41,7 +41,7 @@ function showAllPosts(): array
     return $tab;
 }
 
-function findOneById(string $id): array
+function findOneById(int $id): array
 {
     $dbh = getDBConnection();
     $query = 'SELECT posts.id AS id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id =:id;';
@@ -51,4 +51,14 @@ function findOneById(string $id): array
     $post = $req->fetch();
     $req->closeCursor();
     return $post;
+}
+
+function deletePost(int $id)
+{
+    $dbh = getDBConnection();
+    $query = 'DELETE FROM posts WHERE id = :id;';
+    $req = $dbh->prepare($query);
+    $req->bindValue('id', $id, PDO::PARAM_INT);
+    $req->execute();
+    $req->closeCursor();
 }
