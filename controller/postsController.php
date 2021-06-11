@@ -1,10 +1,12 @@
 <?php
 
+require 'controller.php';
+
 /**
  * Gestion de la page home.php
  *
  * @return void
- */
+ */ 
 function home():void
 {
     $title = "Page d'Accueil";
@@ -12,7 +14,7 @@ function home():void
     
     $posts = showAllPosts();
 
-    render('home', compact('posts'), $title);
+    render('posts/home', compact('posts'), $title);
 }
 
 /**
@@ -28,10 +30,15 @@ function show():void
     }
     $post = findOneById($_GET['id']);
 
-    render('show', compact('post'), $post['title']);
+    render('posts/show', compact('post'), $post['title']);
 }
 
-function delete()
+/**
+ * Gestion de suppresions
+ *
+ * @return void
+ */
+function delete(): void
 {
     require dirname(__DIR__) . '/model/postsRepository.php';
     if (empty($_GET['id'])) {
@@ -40,27 +47,6 @@ function delete()
     deletePost($_GET['id']);
 
     exit(header('Location: index.php'));
-}
-
-
-/**
- * Gestion de rendu du template
- *
- * @param string $view
- * @param array $datas
- * @return void
- */
-function render(string $view, array $datas, $pageTitle): void
-{
-    extract($datas);
-
-    ob_start(); // buferise le contenu de la page
-    require dirname(__DIR__) . '/view/posts/'. $view .'.php';
-    
-    $title = $pageTitle;
-    $content = ob_get_clean();
-
-    require dirname(__DIR__) . '/view/base.php';
 }
 
 
