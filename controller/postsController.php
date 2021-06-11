@@ -26,7 +26,8 @@ function show():void
 {
     require dirname(__DIR__) . '/model/postsRepository.php';
     if (empty($_GET['id'])) {
-        exit(header('Location: index.php'));
+        // exit(header('Location: index.php'));
+        redirect('index.php');
     }
     $post = findOneById($_GET['id']);
 
@@ -46,7 +47,8 @@ function delete(): void
     }
     deletePost($_GET['id']);
 
-    exit(header('Location: index.php'));
+    // exit(header('Location: index.php'));
+    redirect('index.php');
 }
 
 

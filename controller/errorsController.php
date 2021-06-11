@@ -11,6 +11,6 @@ require 'controller.php';
  */
 function showErrors(string $error): void
 {
-    $messages =[];
-    render('errors/error404', $messages, $error);
+    $title = "Erreur 404";
+    render('errors/error404', compact('error'), $title);
 }
