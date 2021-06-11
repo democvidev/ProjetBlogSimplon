@@ -1,18 +1,18 @@
 <?php
 
-require 'controller.php';
+require_once 'controller.php';
 
 /**
  * Gestion de la page home.php
  *
  * @return void
- */ 
+ */
 function home():void
 {
     $title = "Page d'Accueil";
     require dirname(__DIR__) . '/model/postsRepository.php';
     
-    $posts = showAllPosts();
+    $posts = findAll();
 
     render('posts/home', compact('posts'), $title);
 }
@@ -25,9 +25,8 @@ function home():void
 function show():void
 {
     require dirname(__DIR__) . '/model/postsRepository.php';
-    if (empty($_GET['id'])) {
-        // exit(header('Location: index.php'));
-        redirect('index.php');
+    if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
+        throw new Exception("Vous n'avez pas précisé l'id de l'article !");
     }
     $post = findOneById($_GET['id']);
 
@@ -42,13 +41,10 @@ function show():void
 function delete(): void
 {
     require dirname(__DIR__) . '/model/postsRepository.php';
-    if (empty($_GET['id'])) {
-        exit(header('Location: index.php'));
+    if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
+        throw new Exception("Vous n'avez pas précisé l'id de l'article !");
     }
-    deletePost($_GET['id']);
+    deleteOne($_GET['id']);
 
-    // exit(header('Location: index.php'));
     redirect('index.php');
 }
-
-

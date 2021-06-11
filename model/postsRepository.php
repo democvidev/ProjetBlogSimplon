@@ -1,42 +1,13 @@
 <?php
 
-/**
- * Connexion à la base de données
- *
- * @return PDO
- */
-function getDBConnection(): PDO
-{
-    // Couche d'accès au données
-    $user = "root";
-    $pass = "";
-    $dbname = "bd_blog_simplon";
-    $host = 'localhost';
-
-    // Mise en place d'un système de déroutage et gestion d'exeptions
-
-    try {
-        $dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
-        $options = [
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ];
-        $dbh = new PDO($dsn, $user, $pass, $options);
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
-        die();
-    }
-    return $dbh;
-}
+require_once 'model.php';
 
 
-function showAllPosts(): array
+function findAll(): array
 {
     $dbh = getDBConnection();
     $query = 'SELECT posts.id AS id, title, LEFT(content, 150) AS content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.user_id = users.id';
     $req = $dbh->query($query);
-    $req->setFetchMode(PDO::FETCH_ASSOC);
     $tab = $req->fetchAll();
     $req->closeCursor();
     return $tab;
@@ -50,13 +21,17 @@ function findOneById(int $id): array
     $req->bindValue('id', $id, PDO::PARAM_INT);
     $req->execute();
     $post = $req->fetch();
+    if (!$post) {
+        throw new Exception("L'article $id n'existe pas !");
+    }
     $req->closeCursor();
     return $post;
 }
 
-function deletePost(int $id)
+function deleteOne(int $id)
 {
     $dbh = getDBConnection();
+    findOneById($id); //vérification si l'article est dans la bdd
     $query = 'DELETE FROM posts WHERE id = :id;';
     $req = $dbh->prepare($query);
     $req->bindValue('id', $id, PDO::PARAM_INT);

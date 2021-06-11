@@ -26,7 +26,7 @@ function render(string $view, array $datas = [], $pageTitle = null): void
  * @param string $url
  * @return void
  */
-function redirect(string $url)
+function redirect(string $url): void
 {
     exit(header("Location: $url"));
 }

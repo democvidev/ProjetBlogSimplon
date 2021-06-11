@@ -1,7 +1,6 @@
 <?php
 
-require 'controller.php';
-
+require_once 'controller.php';
 
 /**
  * Gestion de la page de connexion
