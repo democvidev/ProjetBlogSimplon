@@ -5,7 +5,7 @@ require_once 'Repository.php';
 
 class PostRepository extends Repository
 {
-    
+    protected $table = "posts";
 
     /**
      * Retourne une liste des articles
@@ -40,20 +40,5 @@ class PostRepository extends Repository
         $req->closeCursor();
         return $post;
     }
-
-    /**
-     * Supprime un article
-     *
-     * @param integer $id
-     * @return void
-     */
-    public function deleteOne(int $id): void
-    {
-        $this->findOneById($id); //vérification si l'article est dans la bdd
-        $query = 'DELETE FROM posts WHERE id = :id;';
-        $req = $this->dbh->prepare($query);
-        $req->bindValue('id', $id, PDO::PARAM_INT);
-        $req->execute();
-        $req->closeCursor();
-    }
+    
 }
