@@ -33,6 +33,12 @@ function redirect(string $url): void
     exit(header("Location: $url"));
 }
 
+/**
+ * Gestion des formulaires
+ *
+ * @param array $array
+ * @return array
+ */
 function isValidForm(array $array): array
 {
     $errorMessage = [];
