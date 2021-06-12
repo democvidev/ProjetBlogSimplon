@@ -4,7 +4,14 @@ require_once 'Repository.php';
 
 class UserRepository extends Repository
 {
+    protected $table = "users";
 
+    /**
+     * Enregistre un utilisateur dans la bdd
+     *
+     * @param array $data
+     * @return void
+     */
     public function insertOne(array $data): void
     {
         $query = 'INSERT INTO users(name, email, password, created_at) VALUES(:name, :email, :password, Now());';
