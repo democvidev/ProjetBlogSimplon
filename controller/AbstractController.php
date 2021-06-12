@@ -2,7 +2,7 @@
 
 class AbstractController
 {
-    const MIN_FIELD_LENGTH = 2;
+    protected $min_field_length = 2;
 
     /**
      * Gestion de rendu du template et son affichage
@@ -45,7 +45,7 @@ class AbstractController
     {
         $errorMessage = [];
         foreach ($array as $key => $value) {
-            if (strlen($value) < MIN_NAME_LENGTH) {
+            if (strlen($value) < $this->min_field_length) {
                 $errorMessage += [ $key => ' Erreur : 
  ce champ doit contenir au moins 2 caractères'];
             }
