@@ -1,16 +1,18 @@
 <?php
 
-require_once 'controller.php';
+require_once 'AbstractController.php';
 
-
-/**
- * Gestion de la page d'erreur
- *
- * @param string $error
- * @return void
- */
-function showErrors(string $error): void
+class ErrorController extends AbstractController
 {
-    $title = "Erreur 404";
-    render('errors/error404', compact('error'), $title);
+    /**
+     * Gestion de la page d'erreur
+     *
+     * @param string $error
+     * @return void
+     */
+    public function showErrors(string $error): void
+    {
+        $title = "Erreur 404";
+        $this->render('errors/error404', compact('error'), $title);
+    }
 }
