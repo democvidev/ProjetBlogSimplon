@@ -1,16 +1,9 @@
 <?php
 
-require_once 'AbstractRepository.php';
+require_once 'Repository.php';
 
-class UserRepository extends AbstractRepository
+class UserRepository extends Repository
 {
-
-    private $dbh;
-
-    public function __construct()
-    {
-        $this->dbh = $this->getDBConnection();
-    }
 
     public function insertOne(array $data): void
     {

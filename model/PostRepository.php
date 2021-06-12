@@ -1,17 +1,11 @@
 <?php
 
 require_once '../Entity/Post.php';
-require_once 'AbstractRepository.php';
+require_once 'Repository.php';
 
-class PostRepository extends AbstractRepository
+class PostRepository extends Repository
 {
-    // dès qu'on crée le model des Posts on met en place un variable de connexion à la bdd, en utilisant le constructeur
-    private $dbh;
-
-    public function __construct()
-    {
-        $this->dbh = $this->getDBConnection();
-    }
+    
 
     /**
      * Retourne une liste des articles
