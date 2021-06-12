@@ -2,20 +2,28 @@
 
 require_once 'controller.php';
 
-function register()
+/**
+ * Gestion de l'inscription 
+ *
+ * @return void
+ */
+function register(): void
 {
-    // var_dump($_POST); die;
     $title = "Page d'inscription";
+    $user = [];
     require dirname(__DIR__) . '/model/usersRepository.php';
 
-    // $users = [];
     $errors = isValidForm($_POST);
+    if ($errors !== []) {
+        render('users/registerForm', $errors, $title);
+        exit();
+    }
     if (!empty($_POST)) {
         insertOne($_POST);
         redirect('index.php');
     }
     
-    render('users/registerForm', $errors, $title);
+    render('users/registerForm', $user, $title);
 }
 
 /**
