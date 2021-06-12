@@ -21,8 +21,9 @@ class Router
             $page = isset($_GET['page']) ? $_GET['page'] : 'post.home';
 
             if ($page === 'post.home') {
-                require $this->path . '/controller/postsController.php';
-                home();
+                require $this->path . '/controller/PostController.php';
+                $postController = new PostController;
+                $postController->home();
             } elseif ($page === 'post.show') {
                 require $this->path . '/controller/postsController.php';
                 show();
