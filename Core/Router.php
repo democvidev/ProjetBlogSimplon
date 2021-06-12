@@ -45,7 +45,8 @@ class Router
             }
         } catch (Exception $e) {
             require $this->path . '/Controller/ErrorController.php';
-            showErrors($e->getMessage());
+            $errorController = new ErrorController;
+            $errorController->showErrors($e->getMessage());
         }
     }
 }
