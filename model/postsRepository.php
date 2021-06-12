@@ -28,7 +28,7 @@ function findOneById(int $id): array
     return $post;
 }
 
-function deleteOne(int $id)
+function deleteOne(int $id): void
 {
     $dbh = getDBConnection();
     findOneById($id); //vérification si l'article est dans la bdd

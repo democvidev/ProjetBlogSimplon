@@ -17,6 +17,9 @@ try {
     } elseif ($page === 'post.delete') {
         require $path . '/controller/postsController.php';
         delete();
+    } elseif ($page === 'user.register') {
+        require $path . '/controller/usersController.php';
+        register();
     } elseif ($page === 'user.connect') {
         require $path . '/controller/usersController.php';
         connect();
