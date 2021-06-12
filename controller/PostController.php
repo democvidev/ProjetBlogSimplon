@@ -1,11 +1,11 @@
 <?php
 
 require_once 'AbstractController.php';
-require_once dirname(__DIR__) . '/model/PostRepository.php';
+require_once dirname(__DIR__) . '/Model/PostRepository.php';
 
 class PostController extends AbstractController
 {
-    private $viewRepertory = 'post/';
+    private $viewRepertory = 'posts/';
 
     /**
      * Gestion de la page home.php
@@ -16,9 +16,7 @@ class PostController extends AbstractController
     {
         $postRepository = new PostRepository;
         $title = "Page d'Accueil";
-    
         $posts = $postRepository->findAll();
-
         $this->render($this->viewRepertory . 'home', compact('posts'), $title);
     }
 
@@ -29,13 +27,12 @@ class PostController extends AbstractController
      */
     public function show():void
     {
-        require dirname(__DIR__) . '/model/postsRepository.php';
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
             throw new Exception("Vous n'avez pas précisé l'id de l'article !");
         }
-        $post = findOneById($_GET['id']);
-
-        render('posts/show', compact('post'), $post['title']);
+        $postRepository = new PostRepository;
+        $post = $postRepository->findOneById($_GET['id']);
+        $this->render($this->viewRepertory . 'show', compact('post'), $post['title']);
     }
 
     /**
@@ -45,12 +42,11 @@ class PostController extends AbstractController
      */
     public function delete(): void
     {
-        require dirname(__DIR__) . '/model/postsRepository.php';
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
             throw new Exception("Vous n'avez pas précisé l'id de l'article !");
         }
-        deleteOne($_GET['id']);
-
-        redirect('index.php');
+        $postRepository = new PostRepository;
+        $postRepository->deleteOne($_GET['id']);
+        $this->redirect('index.php');
     }
 }

@@ -21,26 +21,30 @@ class Router
             $page = isset($_GET['page']) ? $_GET['page'] : 'post.home';
 
             if ($page === 'post.home') {
-                require $this->path . '/controller/PostController.php';
+                require $this->path . '/Controller/PostController.php';
                 $postController = new PostController;
                 $postController->home();
             } elseif ($page === 'post.show') {
-                require $this->path . '/controller/postsController.php';
-                show();
+                require $this->path . '/Controller/PostController.php';
+                $postController = new PostController;
+                $postController->show();
             } elseif ($page === 'post.delete') {
-                require $this->path . '/controller/postsController.php';
-                delete();
+                require $this->path . '/Controller/PostController.php';
+                $postController = new PostController;
+                $postController->delete();
             } elseif ($page === 'user.register') {
-                require $this->path . '/controller/usersController.php';
-                register();
+                require $this->path . '/Controller/UserController.php';
+                $postController = new UserController;
+                $postController->register();
             } elseif ($page === 'user.connect') {
-                require $this->path . '/controller/usersController.php';
-                connect();
+                require $this->path . '/Controller/UserController.php';
+                $postController = new UserController;
+                $postController->connect();
             } else {
                 throw new Exception('404');
             }
         } catch (Exception $e) {
-            require $this->path . '/controller/errorsController.php';
+            require $this->path . '/Controller/ErrorController.php';
             showErrors($e->getMessage());
         }
     }
