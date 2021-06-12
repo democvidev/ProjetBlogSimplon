@@ -1,39 +1,40 @@
 <?php
 
-require_once 'controller.php';
+require_once 'AbstractController.php';
+require_once dirname(__DIR__) . '/Model/UserRepository.php';
 
-/**
- * Gestion de l'inscription 
- *
- * @return void
- */
-function register(): void
+class UserController extends AbstractController
 {
-    $title = "Page d'inscription";
-    $user = [];
-    require dirname(__DIR__) . '/model/usersRepository.php';
-
-    $errors = isValidForm($_POST);
-    if ($errors !== []) {
-        render('users/registerForm', $errors, $title);
-        exit();
-    }
-    if (!empty($_POST)) {
-        insertOne($_POST);
-        redirect('index.php');
-    }
+    /**
+     * Gestion de l'inscription
+     *
+     * @return void
+     */
+    public function register(): void
+    {
+        $title = "Page d'inscription";
+        $errors = $this->isValidForm($_POST);
+        if ($errors !== []) {
+            $this->render('users/registerForm', $errors, $title);
+            exit();
+        }
+        if (!empty($_POST)) {
+            $userRepository = new UserRepository;
+            $userRepository->insertOne($_POST);
+            $this->redirect('index.php');
+        }
     
-    render('users/registerForm', $user, $title);
-}
+        $this->render('users/registerForm', [], $title);
+    }
 
-/**
- * Gestion de la page de connexion
- *
- * @return void
- */
-function connect(): void
-{
-    $title = "Page Connexion";
-    $user = [];
-    render('users/connectionForm', $user, $title);
+    /**
+     * Gestion de la page de connexion
+     *
+     * @return void
+     */
+    public function connect(): void
+    {
+        $title = "Page Connexion";
+        $this->render('users/connectionForm', [], $title);
+    }
 }
