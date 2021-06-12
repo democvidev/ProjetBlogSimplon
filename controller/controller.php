@@ -1,5 +1,7 @@
 <?php
 
+const MIN_NAME_LENGTH = 2;
+
 /**
  * Gestion de rendu du template et son affichage
  *
@@ -30,3 +32,16 @@ function redirect(string $url): void
 {
     exit(header("Location: $url"));
 }
+
+function isValidForm(array $array): array
+{
+    $errorMessage = [];
+    foreach ($array as $key => $value) {
+        if (strlen($value) < MIN_NAME_LENGTH) {
+            $errorMessage += [ $key => ' Erreur : 
+ ce champ doit contenir au moins 2 caractères'];
+        }
+    }
+    return $errorMessage;
+}
+
