@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Model\DataBase;
 
-require_once 'DataBase.php';
+// require_once 'DataBase.php';
 
 class Repository extends DataBase
 {

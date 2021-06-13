@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Model\Repository;
 
-require_once 'Repository.php';
+// require_once 'Repository.php';
 
 class UserRepository extends Repository
 {

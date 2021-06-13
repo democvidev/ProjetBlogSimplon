@@ -4,8 +4,8 @@ namespace App\Model;
 
 use App\Model\Repository;
 
-require_once '../Entity/Post.php';
-require_once 'Repository.php';
+// require_once '../Entity/Post.php';
+// require_once 'Repository.php';
 
 class PostRepository extends Repository
 {
