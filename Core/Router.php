@@ -40,6 +40,10 @@ class Router
                 require $this->path . '/Controller/UserController.php';
                 $postController = new UserController;
                 $postController->connect();
+            } elseif ($page === 'comment.post') {
+                require $this->path . '/Controller/CommentController.php';
+                $commentController = new CommentController;
+                $commentController->comment();
             } else {
                 throw new Exception('404');
             }

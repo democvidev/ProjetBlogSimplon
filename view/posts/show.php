@@ -15,7 +15,7 @@
   </div>
 </div>
 <div>
-  <form action="">
+  <form action="index.php?page=comment.post" method="POST">
     <fieldset>
     <div class="form-group">
       <label for="exampleInputEmail1" class="form-label mt-4">Your name</label>
