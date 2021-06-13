@@ -13,7 +13,8 @@ require_once 'CommentController.php';
 
 class PostController extends AbstractController
 {
-    private $viewRepertory = 'posts/';
+    private $viewRepertory = 'posts/'; // indique le dossier correspondent
+    protected $modelName = PostRepository::class; // indique la classe Repository correspondante
 
     /**
      * Gestion de la page home.php
@@ -22,9 +23,8 @@ class PostController extends AbstractController
      */
     public function home():void
     {
-        $postRepository = new PostRepository;
         $title = "Page d'Accueil";
-        $posts = $postRepository->findAll();
+        $posts = $this->model->findAll();
         $this->render($this->viewRepertory . 'home', compact('posts'), $title);
     }
 
@@ -38,8 +38,7 @@ class PostController extends AbstractController
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
             throw new \Exception("Vous n'avez pas précisé l'id de l'article !");
         }
-        $postRepository = new PostRepository;
-        $post = $postRepository->findOneById($_GET['id']);
+        $post = $this->model->findOneById($_GET['id']);
         $commentController = new CommentController;
         $comments = $commentController->showC($post['id']);
 
@@ -57,8 +56,7 @@ class PostController extends AbstractController
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
             throw new \Exception("Vous n'avez pas précisé l'id de l'article !");
         }
-        $postRepository = new PostRepository;
-        $postRepository->deleteOne($_GET['id']);
+        $this->model->deleteOne($_GET['id']);
         $this->redirect('index.php');
     }
 }

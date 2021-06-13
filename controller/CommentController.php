@@ -11,6 +11,13 @@ require_once dirname(__DIR__) . '/Model/CommentRepository.php';
 
 class CommentController extends AbstractController
 {
+    protected $model;
+
+    public function __construct()
+    {
+        $this->model = new CommentRepository;
+    }
+
     /**
      * Gestion d'insérer le commentaire
      *
@@ -18,8 +25,7 @@ class CommentController extends AbstractController
      */
     public function comment(): void
     {
-        $commentRepository = new CommentRepository;
-        $commentRepository->insertComment($_POST);
+        $this->model->insertComment($_POST);
         $this->redirect("index.php?page=post.show&id=" . $_POST['post_id']);
     }
 
@@ -31,8 +37,7 @@ class CommentController extends AbstractController
      */
     public function showC(int $post_id): array
     {
-        $commentRepository = new CommentRepository;
-        $comments = $commentRepository->findAllComment($post_id);
+        $comments = $this->model->findAllComment($post_id);
         return $comments;
     }
 }

@@ -10,6 +10,14 @@ require_once dirname(__DIR__) . '/Model/UserRepository.php';
 
 class UserController extends AbstractController
 {
+
+    protected $model;
+
+    public function __construct()
+    {
+        $this->model = new UserRepository;
+    }
+
     /**
      * Gestion de l'inscription
      *
@@ -24,8 +32,7 @@ class UserController extends AbstractController
             exit();
         }
         if (!empty($_POST)) {
-            $userRepository = new UserRepository;
-            $userRepository->insertOne($_POST);
+            $this->model->insertOne($_POST);
             $this->redirect('index.php');
         }
     

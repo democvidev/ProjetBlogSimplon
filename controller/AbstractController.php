@@ -5,6 +5,13 @@ namespace App\Controller;
 class AbstractController
 {
     protected $min_field_length = 2;
+    protected $model; // stocke l'instance d'objet PostRepository à chaque nouvelle instanciation gràce au contructeur
+    protected $modelName; // stocke le nom du Repository utilisé
+
+    public function __construct()
+    {
+        $this->model = new $this->modelName;
+    }
 
     /**
      * Gestion de rendu du template et son affichage
