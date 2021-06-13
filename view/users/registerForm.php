@@ -1,6 +1,6 @@
 <form action="index.php?page=user.register" method="POST">
   <fieldset>    
-  <div class="form-group">
+    <div class="form-group">
       <label for="exampleInputEmail1" class="form-label mt-4">Your name</label>
       <input type="text" name="name" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter name">
       <small id="" class="text-danger form-text">
