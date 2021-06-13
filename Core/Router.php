@@ -27,7 +27,7 @@ class Router
             } elseif ($page === 'post.show') {
                 require $this->path . '/Controller/PostController.php';
                 $postController = new PostController;
-                $postController->show();
+                $postController->show();                
             } elseif ($page === 'post.delete') {
                 require $this->path . '/Controller/PostController.php';
                 $postController = new PostController;

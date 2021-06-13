@@ -8,23 +8,27 @@
   <?php endif; ?>
 </div>
 <div>
-  <h5>Commentaires : </h5>
-  <div class="d-flex flex-column">
-  <p>Auteur</p>
-  <p>Commentaires</p>
-  </div>
-</div>
+  <?php if (isset($comments)): ?>
+    <h5>Commentaires : </h5>
+      <?php foreach ($comments as $comment): ?>
+        <div class="d-flex justify-content-between">
+          <p><?= $comment['author'] ?></p>
+          <p><?= $comment['content'] ?></p>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
 <div>
   <form action="index.php?page=comment.post" method="POST">
     <fieldset>
     <div class="form-group">
       <label for="exampleInputEmail1" class="form-label mt-4">Your name</label>
-      <input type="text" name="name" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter name">
+      <input type="text" name="author" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter name">
       <small id="" class="text-danger form-text">
         <?= isset($datas['name']) ? $datas['name'] : ''; ?>
       </small>
     </div>
-      <input type="hidden" name="post_id">
+      <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
       <textarea name="comment_content" id="" cols="30" rows="10" placeholder="Commenter"></textarea>
       <p>
         <input class="btn btn-success" type="submit" name="submit_comment" value="Envoyer">
