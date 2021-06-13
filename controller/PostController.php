@@ -2,6 +2,7 @@
 
 require_once 'AbstractController.php';
 require_once dirname(__DIR__) . '/Model/PostRepository.php';
+require_once 'CommentController.php';
 
 class PostController extends AbstractController
 {
@@ -23,16 +24,20 @@ class PostController extends AbstractController
     /**
      * Gestion de la page show.php
      *
-     * @return void
+     * @return array
      */
-    public function show():void
+    public function show(): array
     {
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
             throw new Exception("Vous n'avez pas précisé l'id de l'article !");
         }
         $postRepository = new PostRepository;
         $post = $postRepository->findOneById($_GET['id']);
-        $this->render($this->viewRepertory . 'show', compact('post'), $post['title']);
+        $commentController = new CommentController;
+        $comments = $commentController->showC($post['id']);
+
+        $this->render($this->viewRepertory . 'show', compact('post', 'comments'), $post['title']);
+        return $post;
     }
 
     /**
