@@ -11,12 +11,7 @@ require_once dirname(__DIR__) . '/Model/CommentRepository.php';
 
 class CommentController extends AbstractController
 {
-    protected $model;
-
-    public function __construct()
-    {
-        $this->model = new CommentRepository;
-    }
+    protected $modelName = CommentRepository::class;
 
     /**
      * Gestion d'insérer le commentaire

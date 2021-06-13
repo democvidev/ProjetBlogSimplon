@@ -11,12 +11,7 @@ require_once dirname(__DIR__) . '/Model/UserRepository.php';
 class UserController extends AbstractController
 {
 
-    protected $model;
-
-    public function __construct()
-    {
-        $this->model = new UserRepository;
-    }
+    protected $modelName = UserRepository::class;
 
     /**
      * Gestion de l'inscription
