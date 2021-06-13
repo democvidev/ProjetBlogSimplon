@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controller;
+
+use App\Controller\AbstractController;
+
 require_once 'AbstractController.php';
 
 class ErrorController extends AbstractController

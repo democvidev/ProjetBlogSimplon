@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controller;
+
 class AbstractController
 {
     protected $min_field_length = 2;

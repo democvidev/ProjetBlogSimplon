@@ -1,5 +1,12 @@
 <?php
 
+namespace App\Core;
+
+use App\Controller\PostController;
+use App\Controller\UserController;
+use App\Controller\CommentController;
+use App\Controller\ErrorController;
+
 class Router
 {
     private $path; // l'attribut stocke le chemin vers la racine du site : dirname(__DIR__)
@@ -45,9 +52,9 @@ class Router
                 $commentController = new CommentController;
                 $commentController->comment();
             } else {
-                throw new Exception('404');
+                throw new \Exception('404');
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             require $this->path . '/Controller/ErrorController.php';
             $errorController = new ErrorController;
             $errorController->showErrors($e->getMessage());

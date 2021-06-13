@@ -1,5 +1,12 @@
 <?php
 
+namespace App\Controller;
+
+use App\Controller\AbstractController;
+use App\Model\PostRepository;
+use App\Controller\CommentController;
+
+
 require_once 'AbstractController.php';
 require_once dirname(__DIR__) . '/Model/PostRepository.php';
 require_once 'CommentController.php';
@@ -29,7 +36,7 @@ class PostController extends AbstractController
     public function show(): array
     {
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-            throw new Exception("Vous n'avez pas précisé l'id de l'article !");
+            throw new \Exception("Vous n'avez pas précisé l'id de l'article !");
         }
         $postRepository = new PostRepository;
         $post = $postRepository->findOneById($_GET['id']);
@@ -48,7 +55,7 @@ class PostController extends AbstractController
     public function delete(): void
     {
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-            throw new Exception("Vous n'avez pas précisé l'id de l'article !");
+            throw new \Exception("Vous n'avez pas précisé l'id de l'article !");
         }
         $postRepository = new PostRepository;
         $postRepository->deleteOne($_GET['id']);

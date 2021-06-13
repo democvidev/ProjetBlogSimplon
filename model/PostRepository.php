@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Model;
+
+use App\Model\Repository;
+
 require_once '../Entity/Post.php';
 require_once 'Repository.php';
 
@@ -31,11 +35,11 @@ class PostRepository extends Repository
     {
         $query = 'SELECT posts.id AS id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id =:id;';
         $req = $this->dbh->prepare($query);
-        $req->bindValue('id', $id, PDO::PARAM_INT);
+        $req->bindValue('id', $id, \PDO::PARAM_INT);
         $req->execute();
         $post = $req->fetch();
         if (!$post) {
-            throw new Exception("L'article $id n'existe pas !");
+            throw new \Exception("L'article $id n'existe pas !");
         }
         $req->closeCursor();
         return $post;

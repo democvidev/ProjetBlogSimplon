@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 abstract class DataBase
 {
     // Couche d'accès au données

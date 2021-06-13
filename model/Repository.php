@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Model;
+
+use App\Model\DataBase;
+
 require_once 'DataBase.php';
 
 class Repository extends DataBase
@@ -23,11 +27,11 @@ class Repository extends DataBase
     {
         $query = "SELECT * FROM {$this->table} WHERE id =:id;";
         $req = $this->dbh->prepare($query);
-        $req->bindValue('id', $id, PDO::PARAM_INT);
+        $req->bindValue('id', $id, \PDO::PARAM_INT);
         $req->execute();
         $post = $req->fetch();
         if (!$post) {
-            throw new Exception("L'article $id n'existe pas !");
+            throw new \Exception("L'article $id n'existe pas !");
         }
         $req->closeCursor();
         return $post;
@@ -44,7 +48,7 @@ class Repository extends DataBase
         $this->find($id); //vérification si l'article est dans la bdd
         $query = "DELETE FROM {$this->table} WHERE id=:id";
         $req = $this->dbh->prepare($query);
-        $req->bindValue('id', $id, PDO::PARAM_INT);
+        $req->bindValue('id', $id, \PDO::PARAM_INT);
         $req->execute();
         $req->closeCursor();
     }
