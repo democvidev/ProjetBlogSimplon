@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Controller\AbstractController;
 use App\Model\CommentRepository;
 
-require_once 'AbstractController.php';
-require_once dirname(__DIR__) . '/Model/CommentRepository.php';
+// require_once 'AbstractController.php';
+// require_once dirname(__DIR__) . '/Model/CommentRepository.php';
 
 
 class CommentController extends AbstractController

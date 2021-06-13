@@ -7,9 +7,9 @@ use App\Model\PostRepository;
 use App\Controller\CommentController;
 
 
-require_once 'AbstractController.php';
-require_once dirname(__DIR__) . '/Model/PostRepository.php';
-require_once 'CommentController.php';
+// require_once 'AbstractController.php';
+// require_once dirname(__DIR__) . '/Model/PostRepository.php';
+// require_once 'CommentController.php';
 
 class PostController extends AbstractController
 {

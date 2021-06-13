@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Model\UserRepository;
 use App\Controller\AbstractController;
 
-require_once 'AbstractController.php';
-require_once dirname(__DIR__) . '/Model/UserRepository.php';
+// require_once 'AbstractController.php';
+// require_once dirname(__DIR__) . '/Model/UserRepository.php';
 
 class UserController extends AbstractController
 {
