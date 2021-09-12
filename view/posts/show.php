@@ -1,9 +1,13 @@
 <div class="card border-dark mb-3">
 <?php if ($post == true): ?>
-  <div class="card-header">Ecrit par <?= htmlspecialchars($post['user']); ?>, le <?= $post['date'] ?></div>
+  <div class="card-header">Ecrit par <?= htmlspecialchars(
+      $post['user']
+  ) ?>, le <?= $post['date'] ?></div>
   <div class="card-body">
-    <h3 class="card-title"><?= htmlspecialchars($post['title']); ?></h3>
-    <p class="card-text"><?= nl2br(htmlspecialchars($post['content'])); ?></p>
+    <h3 class="card-title"><?= htmlspecialchars($post['art_title']) ?></h3>
+    <p class="card-text"><?= nl2br(
+        htmlspecialchars($post['art_content'])
+    ) ?></p>
   </div>
   <?php endif; ?>
 </div>
@@ -25,7 +29,7 @@
       <label for="exampleInputEmail1" class="form-label mt-4">Your name</label>
       <input type="text" name="author" class="form-control" id="" aria-describedby="emailHelp" placeholder="Enter name">
       <small id="" class="text-danger form-text">
-        <?= isset($datas['name']) ? $datas['name'] : ''; ?>
+        <?= isset($datas['name']) ? $datas['name'] : '' ?>
       </small>
     </div>
       <input type="hidden" name="post_id" value="<?= $post['id'] ?>">

@@ -9,7 +9,7 @@ use App\Model\Repository;
 
 class PostRepository extends Repository
 {
-    protected $table = "posts";
+    protected $table = 'posts';
 
     /**
      * Retourne une liste des articles
@@ -18,7 +18,8 @@ class PostRepository extends Repository
      */
     public function findAll(): array
     {
-        $query = 'SELECT posts.id AS id, title, LEFT(content, 150) AS content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh%imin%ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.user_id = users.id';
+        $query =
+            'SELECT posts.id AS id, art_title, LEFT(art_description, 150) AS description, DATE_FORMAT(art_date_creation, \'%d/%m/%Y à %Hh%imin%ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.art_author = users.id';
         $req = $this->dbh->query($query);
         $posts = $req->fetchAll();
         $req->closeCursor();
@@ -33,7 +34,8 @@ class PostRepository extends Repository
      */
     public function findOneById(int $id): array
     {
-        $query = 'SELECT posts.id AS id, title, content, DATE_FORMAT(date, \'%d/%m/%Y à %Hh %imin %ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.user_id = users.id WHERE posts.id =:id;';
+        $query =
+            'SELECT posts.id AS id, art_title, art_content, DATE_FORMAT(art_date_creation, \'%d/%m/%Y à %Hh %imin %ss\') AS date, users.name AS user FROM posts INNER JOIN users ON posts.art_author = users.id WHERE posts.id =:id;';
         $req = $this->dbh->prepare($query);
         $req->bindValue('id', $id, \PDO::PARAM_INT);
         $req->execute();
@@ -44,5 +46,4 @@ class PostRepository extends Repository
         $req->closeCursor();
         return $post;
     }
-    
 }
