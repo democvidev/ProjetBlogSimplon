@@ -2,6 +2,9 @@
 
 use App\Core\Router;
 
+require_once '../config/config.php';
+require_once '../config/config_db.php';
+
 require_once dirname(__DIR__) . '/autoload.php';
 
 
