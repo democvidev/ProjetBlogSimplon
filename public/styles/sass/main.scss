@@ -1,0 +1,38 @@
+.main {
+    width: 80%;
+    margin-bottom: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row.home{
+    transition: opacity 300ms ease-out 500ms, transform 300ms ease-out 500ms;
+}
+
+.loader {
+    // pointer-events: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    background-color: black;
+    z-index: 2;
+    visibility: hidden;
+    transition: opacity 300ms ease-out, visibility 0ms linear 300ms, bottom 500ms ease-out;
+}
+
+.isLoading{
+    .row.home{
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    // le cas de chargement de la classe isLoading l'element loader aura les proprietes :
+    .loader{
+        visibility: visible;
+        opacity: 1;
+        // bottom: 0;
+    }
+}
+
