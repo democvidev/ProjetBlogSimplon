@@ -1,0 +1,23 @@
+{
+  "name": "simplondwwm-projet-blog",
+  "version": "1.0.0",
+  "description": "Réaliser un blog en respectant le pattern Model-View-Controller (MVC) dans le cadre de la formation DWWM de Simplon.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass public/styles/sass/main.scss public/styles/css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/democvidev/ProjetBlogSimplon.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/democvidev/ProjetBlogSimplon/issues"
+  },
+  "homepage": "https://github.com/democvidev/ProjetBlogSimplon#readme",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
